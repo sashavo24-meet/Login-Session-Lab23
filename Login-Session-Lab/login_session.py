@@ -10,9 +10,9 @@ def home():
   	return render_template('home.html')
   else:
   	try:
-  		login_session["author's age"] = authors_age
-  		login_session["quote's author"] = authors_name
-  		login_session['quote'] = quote
+  		login_session["author's age"] = request.form['authors_age']
+  		login_session["quote's author"] = request.form['authors_name']
+  		login_session['quote'] = request.form['quote']
   		return render_template('thanks.html')
   	except:
   		return render_template('error.html')
@@ -26,7 +26,7 @@ def error():
 @app.route('/display')
 def display():
 
-	return render_template('display.html', ) # What variables are needed?
+	return render_template('display.html', age = login_session["author's age"], name = login_session["quote's author"], quote = login_session['quote']) # What variables are needed?
 
 
 @app.route('/thanks')
